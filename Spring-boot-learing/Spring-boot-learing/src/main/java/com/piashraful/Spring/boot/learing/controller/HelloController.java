@@ -9,6 +9,5 @@ public class HelloController {
     public String helloMessage() {
         return "Hello Message";
     }
-
 }
 
