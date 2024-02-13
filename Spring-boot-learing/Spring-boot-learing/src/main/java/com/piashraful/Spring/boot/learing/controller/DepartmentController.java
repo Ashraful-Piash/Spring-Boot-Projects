@@ -28,4 +28,8 @@ public class DepartmentController {
     public Department getDepartmentById(@PathVariable Long id) {
         return departmentService.getDepartmentById(id);
     }
+    @DeleteMapping("/departments/{id}")
+    public Department deleteDepartmentById(@PathVariable Long id){
+        return departmentService.deleteDepartmentById(id);
+    }
 }
