@@ -8,10 +8,11 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class DepartmentServiceImpl implements DepartmentService{
+public class DepartmentServiceImpl implements DepartmentService {
 
     @Autowired
     private DepartmentRepository departmentRepository;
+
     @Override
     public Department saveDepartment(Department department) {
         return departmentRepository.save(department);
@@ -31,5 +32,9 @@ public class DepartmentServiceImpl implements DepartmentService{
         return departmentRepository.findById(id).orElse(null);
     }
 
+    @Override
+    public void deleteDepartmentById(Long departmentId) {
+        departmentRepository.deleteById(departmentId);
+    }
 
 }
