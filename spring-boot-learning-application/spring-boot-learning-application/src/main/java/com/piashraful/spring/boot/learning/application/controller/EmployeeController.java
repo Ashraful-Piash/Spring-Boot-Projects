@@ -9,13 +9,16 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class EmployeeController {
+
     @Autowired
     private EmployeeService employeeService;
 
     @PostMapping("/employees")
-    public Employee saveEmployee(@RequestBody Employee employee) {
+    public Employee saveEmployee(@RequestBody Employee employee){
         return employeeService.saveEmployee(employee);
+
     }
+
 }
 
 
