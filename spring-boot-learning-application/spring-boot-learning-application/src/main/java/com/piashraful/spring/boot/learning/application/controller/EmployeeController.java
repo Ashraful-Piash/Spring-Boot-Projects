@@ -17,9 +17,14 @@ public class EmployeeController {
     }
 
     @GetMapping("/employee/{id}")
-    public Employee getEmployee(@PathVariable Long id){
-        return employeeService.getEmployee(id);
+    public Employee getEmployeeById(@PathVariable Long id){
+        return employeeService.getEmployeeById(id);
     }
+    @DeleteMapping("/employee/{id}")
+    public Employee deleteEmployeeById(){
+        return employeeService.deleteEmployeeById(Long id);
+    }
+   
 
 }
 

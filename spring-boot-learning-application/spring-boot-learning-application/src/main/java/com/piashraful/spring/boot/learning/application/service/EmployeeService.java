@@ -6,5 +6,7 @@ public interface EmployeeService {
 
     public Employee saveEmployee(Employee employee);
 
-   public Employee getEmployee(Long id);
+   public Employee getEmployeeById(Long id);
+
+   public Employee deleteEmployeeById(Long id);
 }
