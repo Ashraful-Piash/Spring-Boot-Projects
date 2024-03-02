@@ -20,11 +20,15 @@ public class EmployeeController {
     public Employee getEmployeeById(@PathVariable Long id){
         return employeeService.getEmployeeById(id);
     }
+    @GetMapping("/employees}")
+    public Employee getAllEmployees(@PathVariable Long id){
+        return employeeService.getAllEmployees(id);
+    }
     @DeleteMapping("/employee/{id}")
     public Employee deleteEmployeeById(){
-        return employeeService.deleteEmployeeById(Long id);
+        return employeeService.deleteEmployeeById(Long employeeId);
     }
-   
+
 
 }
 

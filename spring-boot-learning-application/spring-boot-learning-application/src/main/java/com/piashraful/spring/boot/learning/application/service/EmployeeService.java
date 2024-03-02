@@ -9,4 +9,6 @@ public interface EmployeeService {
    public Employee getEmployeeById(Long id);
 
    public Employee deleteEmployeeById(Long id);
+
+   public Employee getAllEmployees(Long id);
 }
