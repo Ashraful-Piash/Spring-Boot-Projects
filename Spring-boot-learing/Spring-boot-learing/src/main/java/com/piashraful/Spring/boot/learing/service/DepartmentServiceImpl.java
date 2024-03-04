@@ -13,6 +13,12 @@ public class DepartmentServiceImpl implements DepartmentService {
     @Autowired
     private DepartmentRepository departmentRepository;
 
+    @Override
+    public Department saveDepartment(Department department) {
+        return departmentRepository.save(department);
+    }
+
+
 
     @Override
     public List<Department> fetchDepartmentList() {
@@ -33,9 +39,6 @@ public class DepartmentServiceImpl implements DepartmentService {
         departmentRepository.deleteById(departmentId);
     }
 
-    @Override
-    public Department saveDepartment(Department department) {
-        return departmentRepository.save(department);
-    }
+
 
 }
