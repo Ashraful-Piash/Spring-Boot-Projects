@@ -2,13 +2,20 @@ package com.piashraful.spring.boot.learning.application.service;
 
 import com.piashraful.spring.boot.learning.application.entity.Employee;
 
+import java.util.List;
+
 public interface EmployeeService {
 
     public Employee saveEmployee(Employee employee);
 
-   public Employee getEmployeeById(Long id);
 
-   public Employee deleteEmployeeById(Long id);
 
-   public Employee getAllEmployees(Long id);
+
+   public List<Employee> getAllEmployees();
+
+   public Employee getEmployeeById(Long employeeId);
+
+   public void deleteEmployeeById(Long employeeId);
+
+   public Employee updateEmployee(Long employeeId, Employee employee);
 }

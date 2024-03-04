@@ -5,6 +5,9 @@ import com.piashraful.spring.boot.learning.application.repository.EmployeeReposi
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.Objects;
+
 @Service
 public class EmployeeServiceImpl implements EmployeeService{
 
@@ -16,24 +19,38 @@ public class EmployeeServiceImpl implements EmployeeService{
         return employeeRepository.save(employee);
     }
 
+
     @Override
-    public Employee getEmployeeById(Long id) {
-        return employeeRepository.findById(id).orElse(null);
+    public List<Employee> getAllEmployees() {
+        return employeeRepository.findAll();
     }
 
     @Override
-    public Employee deleteEmployeeById(Long id) {
-        return null;
+    public Employee getEmployeeById(Long employeeId) {
+        return employeeRepository.findById(employeeId).get();
     }
 
     @Override
-    public Employee getAllEmployees(Long id) {
-        return null;
+    public void deleteEmployeeById(Long employeeId) {
+        employeeRepository.deleteById(employeeId);
+
     }
 
     @Override
-    public Employee deleteEmployeeById() {
-        return employeeRepository.deleteById(employeeId).orElse(null);
+    public Employee updateEmployee(Long employeeId, Employee employee) {
+        Employee employeeDb = employeeRepository.findById(employeeId).get();
+
+        if(Objects.nonNull(employee.getEmployeeName()) && !"".equalsIgnoreCase(employee.getEmployeeName())){
+            employeeDb.setEmployeeName(employee.getEmployeeName());
+        }
+        if(Objects.nonNull(employee.getEmployeeEmail()) && !"".equalsIgnoreCase(employee.getEmployeeEmail())){
+            employeeDb.setEmployeeEmail(employee.getEmployeeEmail());
+        }
+        if(Objects.nonNull(employee.getEmployeeAddress()) && !"".equalsIgnoreCase(employee.getEmployeeAddress())){
+            employeeDb.setEmployeeAddress(employee.getEmployeeAddress());
+        }
+        return employeeRepository.save(employeeDb);
     }
+
 
 }
