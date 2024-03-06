@@ -10,8 +10,12 @@ public class Employee {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long employeeId;
+
+
     private String employeeName;
     private String employeeAddress;
+
+
     private String employeeEmail;
 
     public Long getEmployeeId() {

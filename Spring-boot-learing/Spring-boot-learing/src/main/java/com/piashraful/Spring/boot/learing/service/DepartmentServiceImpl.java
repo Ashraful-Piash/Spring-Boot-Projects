@@ -38,6 +38,7 @@ public class DepartmentServiceImpl implements DepartmentService {
         departmentRepository.deleteById(departmentId);
     }
 
+
     @Override
     public Department updateDepartment(Long departmentId, Department department) {
         Department dbDep = departmentRepository.findById(departmentId).get();
@@ -54,6 +55,10 @@ public class DepartmentServiceImpl implements DepartmentService {
         return departmentRepository.save(dbDep);
     }
 
+    @Override
+    public Department fetchDepartmentByName(String departmentName) {
+        return departmentRepository.findByDepartmentNameIgnoreCase(departmentName);
+    }
 
 
 }
