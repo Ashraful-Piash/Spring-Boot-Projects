@@ -1,0 +1,61 @@
+package com.piashraful.Student.management.learning.service;
+
+import com.piashraful.Student.management.learning.entity.Student;
+import com.piashraful.Student.management.learning.exception.InvalidUserDataException;
+import com.piashraful.Student.management.learning.repository.StudentRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.Optional;
+
+@Service
+public class StudentServiceImpl implements StudentService {
+
+    private static final Logger logger = LoggerFactory.getLogger(StudentServiceImpl.class);
+
+
+
+    @Autowired
+    private StudentRepository studentRepository;
+
+
+    @Override
+    public List<Student> getStudents() {
+        return studentRepository.findAll();
+    }
+
+    @Override
+    public Student saveAllStudents(Student student) {
+        try {
+            Optional<Student> optionalStudent = studentRepository.findStudentByEmail(student.getEmail());
+            if (optionalStudent.isPresent()) {
+                throw new InvalidUserDataException("Email already taken");
+            }
+            return studentRepository.save(student);
+        } catch (InvalidUserDataException e) {
+            e.printStackTrace();
+            throw e;
+        }
+    }
+
+
+
+    @Override
+    public Student getStudentById(Long studentId) {
+        return studentRepository.findById(studentId).orElse(null);
+    }
+
+    @Override
+    public void deleteStudentById(Long studentId) {
+        if(studentRepository.existsById(studentId)){
+            studentRepository.deleteById(studentId);
+            logger.info("User with ID {} deleted successfully", studentId);
+        } else {
+            logger.info("User with ID {} not found", studentId);
+        }
+
+    }
+}
