@@ -8,7 +8,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 @Service
@@ -58,4 +60,22 @@ public class StudentServiceImpl implements StudentService {
         }
 
     }
+
+
+    @Override
+    public Student updateStudent(Long studentId, Student student) {
+        Student studentDb = studentRepository.findById(studentId).get();
+        if(Objects.nonNull(student.getStudentName()) && !"".equalsIgnoreCase(student.getStudentName())){
+            studentDb.setStudentName(student.getStudentName());
+        }
+        if(Objects.nonNull(student.getEmail()) && !"".equalsIgnoreCase(student.getEmail())){
+            studentDb.setEmail(student.getEmail());
+        }
+        if (Objects.nonNull(student.getDateOfBirth())) {
+            String dobAsString = student.getDateOfBirth().toString(); // Convert LocalDate to String
+            studentDb.setDateOfBirth(LocalDate.parse(dobAsString));
+        }
+        return studentRepository.save(studentDb);
+    }
 }
+
