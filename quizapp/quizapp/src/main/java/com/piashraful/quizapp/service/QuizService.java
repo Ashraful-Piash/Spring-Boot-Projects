@@ -25,15 +25,12 @@ public class QuizService {
 
 
     public ResponseEntity<String> createQuiz(String category, int numQ, String title) {
-        List<Question> questionList = questionDao.findRandomQuestionsByCategory(category, numQ);
-
+        List<Question> questionList = questionDao.findRandomQuestionsByCategory(category,numQ);
         Quiz quiz = new Quiz();
         quiz.setTitle(title);
-        quiz.setQuestions(questionList); // Set associated questions
-
-        quizDao.save(quiz); // Save the quiz along with associated questions
-
-        return new ResponseEntity<>("Quiz created successfully", HttpStatus.CREATED);
+        quiz.setQuestions(questionList);
+        quizDao.save(quiz);
+        return  new ResponseEntity<>("Quiz created Successfully", HttpStatus.CREATED);
     }
 
     public ResponseEntity<List<QuestionWrapper>> getQuizQuestions(Integer id) {

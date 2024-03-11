@@ -1,6 +1,5 @@
 package com.piashraful.quizapp.entity;
 
-import jakarta.persistence.Entity;
 import lombok.Data;
 
 
