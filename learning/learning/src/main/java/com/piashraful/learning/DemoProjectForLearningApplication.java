@@ -6,16 +6,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @SpringBootApplication
-@RestController
+
 public class DemoProjectForLearningApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(DemoProjectForLearningApplication.class, args);
+		var contx = SpringApplication.run(DemoProjectForLearningApplication.class, args);
+		MyFirstClass myFirstClass = contx.getBean(MyFirstClass.class);
+		System.out.println(myFirstClass.sayHello());
 	}
-	@GetMapping("/")
-	public String hello(){
-		return "hello piash";
-	}
-
-
+	
 }
