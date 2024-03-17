@@ -24,6 +24,7 @@ public class StudentServiceImpl implements StudentService {
     private StudentRepository studentRepository;
 
 
+
     @Override
     public List<Student> getStudents() {
         return studentRepository.findAll();
@@ -68,6 +69,7 @@ public class StudentServiceImpl implements StudentService {
         if(Objects.nonNull(student.getStudentName()) && !"".equalsIgnoreCase(student.getStudentName())){
             studentDb.setStudentName(student.getStudentName());
         }
+
         if(Objects.nonNull(student.getEmail()) && !"".equalsIgnoreCase(student.getEmail())){
             studentDb.setEmail(student.getEmail());
         }
@@ -76,6 +78,11 @@ public class StudentServiceImpl implements StudentService {
             studentDb.setDateOfBirth(LocalDate.parse(dobAsString));
         }
         return studentRepository.save(studentDb);
+    }
+
+    @Override
+    public Student getStudentByStudentName(String studentName) {
+        return studentRepository.findByStudentName(studentName);
     }
 }
 

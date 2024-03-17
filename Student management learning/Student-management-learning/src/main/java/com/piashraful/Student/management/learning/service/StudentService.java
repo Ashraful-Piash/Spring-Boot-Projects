@@ -14,4 +14,6 @@ public interface StudentService {
    public void deleteStudentById(Long studentId);
 
   public Student updateStudent(Long studentId, Student student);
+
+   public Student getStudentByStudentName(String studentName);
 }

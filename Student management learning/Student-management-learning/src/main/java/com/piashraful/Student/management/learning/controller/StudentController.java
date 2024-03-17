@@ -11,37 +11,46 @@ import java.util.List;
 public class StudentController {
 
     private final StudentService studentService;
+
     @Autowired
     public StudentController(StudentService studentService) {
         this.studentService = studentService;
     }
 
-    @GetMapping("/students")
+    //    @GetMapping("/students")
+//    public List<Student> getStudents() {
+//        return studentService.getStudents();
+//    }
+    @GetMapping("students")
     public List<Student> getStudents() {
         return studentService.getStudents();
     }
+
     @PostMapping("/students")
-    public Student saveAllStudents(@RequestBody Student student){
+    public Student saveAllStudents(@RequestBody Student student) {
         return studentService.saveAllStudents(student);
 
     }
+
     @GetMapping("/students/{id}")
-    public Student getStudentById(@PathVariable("id") Long studentId){
+    public Student getStudentById(@PathVariable("id") Long studentId) {
         return studentService.getStudentById(studentId);
     }
 
     @DeleteMapping("/students/{id}")
-        public void deleteStudentById(@PathVariable("id") Long studentId){
+    public void deleteStudentById(@PathVariable("id") Long studentId) {
         studentService.deleteStudentById(studentId);
     }
 
     @PutMapping("/students/{id}")
     public Student updateStudent(@PathVariable("id") Long studentId,
-                                 @RequestBody Student student){
+                                 @RequestBody Student student) {
         return studentService.updateStudent(studentId, student);
     }
 
-
-
+    @GetMapping("/students/name/{name}")
+    public Student getStudentByStudentName(@PathVariable("name") String studentName){
+        return studentService.getStudentByStudentName(studentName);
+    }
 
 }
