@@ -17,7 +17,7 @@ import lombok.NoArgsConstructor;
 @AttributeOverrides({
         @AttributeOverride(
                 name = "name",
-                column = @Column(name ="guardian_name" )
+                column = @Column(name = "guardian_name")
         ),
         @AttributeOverride(
                 name = "email",
@@ -25,13 +25,12 @@ import lombok.NoArgsConstructor;
         ),
         @AttributeOverride(
                 name = "mobile",
-                column = @Column(name="guardian_mobile")
+                column = @Column(name = "guardian_mobile")
         )
-
 })
 public class Guardian {
+
     private String name;
     private String email;
     private String mobile;
-
 }
